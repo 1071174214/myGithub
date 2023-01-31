@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测试</title>
+    <script>
+
+    function openCamera(){
+        android.openCamera();
+    }
+
+    function takeVideo(){
+        android.takeVideo();
+    }
+
+    function selectVideo(){
+        android.selectVideo();
+    }
+
+    //选择照片
+    function openAlbum(){
+	   android.openAlbum();
+    }
+
+    //选择照片
+    function selectFile(){
+	   android.selectFile('txt');
+    }
+
+    //选择照片
+    function selectFile2(){
+	   android.selectFile('shp');
+    }
+
+    //选择照片
+    function selectFile3(){
+	   android.selectFile('pdf');
+    }
+
+    function writeLog(){
+       android.writeToTxt("日志");
+    }
+
+    function saveAndGetData(){
+       android.saveData("username","123456");
+       var username = android.getData("username");
+       alert(username)
+    }
+
+    function saveToFile(){
+       android.saveDataToTxt("test/测试1231231.txt","伟大达娃阿迪王哇",true);
+    }
+
+    //写给android的方法，android回传数据给h5
+    function openCameraResult(data){
+        alert(data);
+        var codeImg = document.getElementById("codeImg");
+        codeImg.src = data;
+<!--        return 'js返回给android'-->
+    }
+    //写给android的方法，android回传数据给h5
+    function openAlbumResult(data){
+<!--        alert(data);-->
+        var codeImg = document.getElementById("codeImg");
+        codeImg.src = data;
+    }
+
+        //写给android的方法，android回传数据给h5
+    function selectVideoResult(data){
+        var video = document.getElementById("video");
+        video.src = data;
+    }
+
+    //写给android的方法，android回传数据给h5
+    function takeVideoResult(data){
+        var video = document.getElementById("video");
+        video.src = data;
+    }
+
+    function selectFileResult(path){
+        var data = android.getFileBase64(path);
+        alert(data);
+    }
+
+    function getFileBase64(){
+        var data = android.getFileBase64('file:///storage/emulated/0/土地利用现状分类.pdf');
+        alert(data);
+    }
+
+    function getLocation(path){
+<!--       console.log("aaaaaaa:获取定位"+path)-->
+<!--       alert("aaa:"+path)-->
+    }
+
+    function popupNotifications(){
+        android.popupNotifications("您收到一条消息通知")
+    }
+
+    function getLocation(str){
+         console.log("定位:"+str)
+    }
+
+    function isTracking(){
+        var data = android.isTracking("admin","123");
+        console.log("aaaaaaa:查询轨迹"+data);
+    }
+
+    function startTrack(){
+        var data = android.startTrack("admin","123");
+        console.log("aaaaaaa:开始轨迹"+data);
+    }
+
+    function startTrack2(){
+        var data = android.startTrack("admin","456");
+        console.log("aaaaaaa:开始轨迹"+data);
+    }
+
+    function continueTrack(){
+        var data = android.continueTrack("admin","123");
+        console.log("aaaaaaa:继续轨迹"+data);
+    }
+
+    function continueTrack2(){
+        var data = android.continueTrack("admin","456");
+        console.log("aaaaaaa:继续轨迹"+data);
+    }
+
+    function endTrack(){
+        var data = android.endTrack("admin","123");
+        console.log("aaaaaaa:结束轨迹"+data);
+    }
+
+    function endTrack2(){
+        var data = android.endTrack("admin","456");
+        console.log("aaaaaaa:结束轨迹"+data);
+    }
+
+   function queryTrack(){
+        android.queryTrack("admin","123");
+   }
+
+   function queryTrackDetail(){
+       android.queryTrackDetail("admin","123");
+   }
+
+   function queryTrackDetail2(){
+       android.queryTrackDetail("admin","456");
+   }
+
+   function startActivity(){
+     android.startActivity();
+   }
+
+    </script>
+</head>
+<body style="background-color: #ff999999">
+
+<br><br>
+<button onclick="openCamera()">拍照</button>
+<button onclick="takeVideo()">录屏</button>
+<button onclick="openAlbum()">选择照片</button>
+<button onclick="selectVideo()">选择视频</button>
+<button onclick="selectFile()">选择txt文件</button>
+<button onclick="selectFile2()">选择shp文件</button>
+<button onclick="selectFile3()">选择pdf文件</button>
+<button onclick="writeLog()">写日志</button>
+<button onclick="saveAndGetData()">保存并获取数据</button>
+<button onclick="getFileBase64()">转化为base64</button>
+<button onclick="saveToFile()">保存数据到文件</button>
+<button onclick="popupNotifications()">弹出通知</button>
+
+<button onclick="isTracking()">查询是否正在记录轨迹</button>
+<button onclick="startTrack()">开始记录轨迹1</button>
+<button onclick="startTrack2()">开始记录轨迹2</button>
+<button onclick="continueTrack()">继续记录轨迹1</button>
+<button onclick="continueTrack2()">继续记录轨迹2</button>
+<button onclick="endTrack()">结束记录轨迹1</button>
+<button onclick="endTrack2()">结束记录轨迹2</button>
+<button onclick="queryTrack()">查询轨迹1</button>
+<button onclick="queryTrack()2">查询轨迹2</button>
+<button onclick="queryTrackDetail()">查询轨迹详情1</button>
+<button onclick="queryTrackDetail2()">查询轨迹详情2</button>
+<button onclick="startActivity()">打开页面</button>
+<!--<input type="file" accept=""/>-->
+<!--<input type="file" accept="image/*" multiple="multiple"/>-->
+<img id="codeImg" style="width: 500px; height: 500px;" src="#" alt="Base64图片"/>
+
+<video id="video" width="320" height="240" controls autoplay>
+    <source src="#" type="video/mp4">
+</video>
+</body>
+</html>
